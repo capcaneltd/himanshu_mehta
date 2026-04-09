@@ -1,0 +1,620 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&family=Great+Vibes&display=swap');
+
+:root {
+    --black: #000000;
+    --white: #ffffff;
+    --gray-400: #999;
+    --gray-600: #666;
+    --gray-800: #1a1a1a;
+    --gray-900: #0d0d0d;
+    --accent: #c9a96e;
+    --accent-dim: rgba(201,169,110,0.12);
+    --font: 'Inter', -apple-system, sans-serif;
+}
+
+*,*::before,*::after { margin:0; padding:0; box-sizing:border-box; }
+
+html { -webkit-font-smoothing:antialiased; scroll-behavior: auto; }
+
+body {
+    font-family: var(--font);
+    background: var(--black);
+    color: var(--white);
+    overflow-x: hidden;
+}
+
+/* Preloader removed per user request */
+
+/* ============================
+   NAVIGATION
+   ============================ */
+.nav {
+    position: fixed;
+    top: 0; left: 0; width: 100%;
+    padding: 2rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    z-index: 100;
+    /* No mix-blend-mode — nav is always white on dark */
+}
+
+.nav-left { display: flex; gap: 3rem; align-items: flex-start; }
+
+.logo { font-weight: 900; font-size: 1.8rem; letter-spacing: -2px; color: #fff; }
+
+.nav-titles { display: flex; flex-direction: column; font-size: 0.75rem; color: rgba(255,255,255,0.6); line-height: 1.6; }
+
+.menu-btn {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: #fff; font-family: var(--font);
+    font-size: 0.7rem; font-weight: 500; letter-spacing: 0.05em;
+    padding: 0.55rem 1.3rem; border-radius: 100px; cursor: pointer;
+}
+
+/* ============================
+   HERO — FULL IMMERSIVE
+   ============================ */
+.hero {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    background: var(--black);
+}
+
+/* Mosaic grid — positioned on the RIGHT side */
+.hero-mosaic {
+    position: fixed; /* Was absolute. Now stays on screen permanently */
+    right: 0;
+    bottom: 0;
+    width: 45vw;
+    max-width: 600px;
+    height: 90vh;
+    z-index: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    gap: 0;
+    border: none;
+    outline: none;
+}
+
+.mosaic-tile {
+    width: 100%;
+    height: 100%;
+    background-size: 400% 500%; /* 4 cols x 5 rows → maps to full image */
+    filter: grayscale(100%);
+    opacity: 0;
+    will-change: transform, opacity, filter;
+    border: none;
+    outline: none;
+}
+
+/* Dark overlays — only cover LEFT side for text readability */
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* Darkens left side where text sits, fades to transparent before the image */
+.hero-overlay-left {
+    background: linear-gradient(
+        to right,
+        rgba(0,0,0,0.9) 0%,
+        rgba(0,0,0,0.7) 25%,
+        rgba(0,0,0,0.3) 45%,
+        transparent 55%
+    );
+}
+
+/* Gentle bottom fade — keeps image visible */
+.hero-overlay-bottom {
+    background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.8) 0%,
+        rgba(0,0,0,0.3) 15%,
+        transparent 35%
+    );
+}
+
+/* Gentle top fade */
+.hero-overlay-top {
+    background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.5) 0%,
+        transparent 25%
+    );
+}
+
+/* Floating mandala behind the image */
+.hero-mandala {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70vw;
+    max-width: 900px;
+    height: 70vw;
+    max-height: 900px;
+    border-radius: 50%;
+    border: 1px solid var(--accent-dim);
+    z-index: 0;
+    opacity: 0;
+    animation: mandala-spin 120s linear infinite;
+}
+
+.hero-mandala::before, .hero-mandala::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid var(--accent-dim);
+}
+
+.hero-mandala::before {
+    inset: 10%;
+    animation: mandala-spin 90s linear infinite reverse;
+}
+
+.hero-mandala::after {
+    inset: 25%;
+    animation: mandala-spin 60s linear infinite;
+}
+
+@keyframes mandala-spin {
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Floating golden particles */
+.particle {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: var(--accent);
+    border-radius: 50%;
+    opacity: 0;
+    z-index: 0;
+}
+
+/* Typography: MASSIVE overlay — sits on the dark left side */
+.hero-text-top {
+    position: absolute;
+    top: 18%;
+    left: 4rem;
+    z-index: 10;
+}
+
+.hero-tag {
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.6em;
+    color: var(--accent);
+    opacity: 0;
+    display: block;
+    margin-bottom: 1.5rem;
+}
+
+.hero-title {
+    font-weight: 900;
+    font-size: clamp(5rem, 12vw, 14rem);
+    line-height: 0.85;
+    letter-spacing: -0.05em;
+    text-transform: uppercase;
+    overflow: hidden;
+}
+
+.hero-title .line {
+    display: block;
+    overflow: hidden;
+}
+
+.hero-title .line-inner {
+    display: block;
+    transform: translateY(110%);
+    will-change: transform;
+}
+
+.hero-title .line:nth-child(1) .line-inner {
+    color: var(--gray-400);
+    font-weight: 300;
+    font-size: 0.35em;
+    letter-spacing: 0.15em;
+}
+
+/* Bottom text block — sits on the dark left side */
+.hero-bottom {
+    position: absolute;
+    bottom: 8vh;
+    left: 4rem;
+    max-width: 420px;
+    z-index: 10;
+}
+
+.hero-bio {
+    font-size: 0.95rem;
+    color: var(--gray-400);
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+/* Scroll indicator */
+.scroll-cue {
+    position: absolute;
+    bottom: 3rem;
+    right: 4rem;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+    opacity: 0;
+}
+
+.scroll-cue span {
+    font-size: 0.55rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--gray-600);
+    writing-mode: vertical-lr;
+}
+
+.scroll-line-track {
+    width: 1px;
+    height: 60px;
+    background: rgba(255,255,255,0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.scroll-line-thumb {
+    position: absolute;
+    top: -50%;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background: var(--accent);
+    animation: scroll-pulse 2s ease-in-out infinite;
+}
+
+@keyframes scroll-pulse {
+    0%, 100% { top: -50%; }
+    50% { top: 100%; }
+}
+
+/* ============================
+   BUTTONS
+   ============================ */
+.btn {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    padding: 0.85rem 2rem;
+    font-family: var(--font); font-size: 0.65rem; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    text-decoration: none; border-radius: 100px;
+    transition: all 0.4s cubic-bezier(0.165,0.84,0.44,1);
+    cursor: pointer; border: none;
+}
+
+.btn-primary { background: var(--accent); color: var(--black); }
+.btn-primary:hover { background: #d4b67a; transform: translateY(-3px); box-shadow: 0 15px 40px rgba(201,169,110,0.3); }
+
+.btn-outline { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.15); }
+.btn-outline:hover { background: rgba(255,255,255,0.08); transform: translateY(-3px); }
+
+.arrow { font-size: 1.1rem; transition: transform 0.3s; }
+.btn:hover .arrow { transform: translateX(4px); }
+
+/* ============================
+   WISDOM — IMMERSIVE BG
+   ============================ */
+.wisdom {
+    position: relative;
+    z-index: 2;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 12rem 4rem;
+    overflow: hidden;
+}
+
+.wisdom-bg-image {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+
+.wisdom-bg-image img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%) brightness(0.3);
+    transform: scale(1.1);
+    will-change: transform, filter;
+}
+
+.wisdom-bg-image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 30% 50%, transparent 20%, rgba(0,0,0,0.85) 70%);
+}
+
+.wisdom-inner {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+}
+
+.wisdom-title {
+    font-weight: 900;
+    font-size: clamp(3rem, 10vw, 10rem);
+    line-height: 0.85;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+    text-align: right;
+    margin-bottom: 4rem;
+    overflow: hidden;
+}
+
+.wisdom-title .w-line {
+    display: block;
+    overflow: hidden;
+}
+
+.wisdom-title .w-line-inner {
+    display: block;
+    transform: translateY(100%);
+}
+
+.wisdom-body {
+    max-width: 480px;
+    padding: 2.5rem;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(30px);
+    border-left: 2px solid var(--accent);
+    opacity: 0;
+    transform: translateY(40px);
+}
+
+.wisdom-body p {
+    font-size: 0.95rem; color: var(--gray-400); line-height: 1.8; margin-bottom: 2rem;
+}
+
+/* ============================
+   BOOKS — HORIZONTAL SCROLL
+   ============================ */
+.books {
+    position: relative;
+    z-index: 2;
+    padding: 10rem 0;
+    background: var(--gray-900);
+    overflow: hidden;
+}
+
+.books-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 0 4rem;
+    margin-bottom: 4rem;
+}
+
+.books-header h2 {
+    font-size: 3.5rem; font-weight: 900; letter-spacing: -0.02em;
+}
+
+.view-all {
+    color: var(--gray-400); text-decoration: none;
+    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em;
+    text-transform: uppercase; display: flex; align-items: center; gap: 0.5rem;
+    transition: color 0.3s;
+}
+.view-all:hover { color: var(--white); }
+
+.books-track {
+    display: flex;
+    gap: 3rem;
+    padding: 0 4rem;
+    /* Will be animated via GSAP horizontally */
+}
+
+.book-card {
+    flex: 0 0 420px;
+    background: var(--gray-800);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.5s cubic-bezier(0.165,0.84,0.44,1), box-shadow 0.5s ease;
+}
+
+.book-card:hover {
+    transform: translateY(-15px) scale(1.02);
+    box-shadow: 0 40px 80px rgba(0,0,0,0.6);
+}
+
+.book-image-wrapper {
+    padding: 3rem;
+    display: flex; justify-content: center; align-items: center;
+    aspect-ratio: 1/1;
+    background: linear-gradient(160deg, #111 0%, #1f1f1f 100%);
+    overflow: hidden;
+}
+
+.book-image-wrapper img {
+    max-width: 90%; max-height: 90%;
+    object-fit: contain;
+    border-radius: 4px;
+    box-shadow: 8px 12px 30px rgba(0,0,0,0.5);
+    transition: transform 0.8s cubic-bezier(0.165,0.84,0.44,1);
+}
+
+.book-card:hover .book-image-wrapper img {
+    transform: scale(1.08) rotate(-2deg);
+}
+
+.book-info {
+    padding: 2rem 2.5rem;
+}
+
+.book-info h3 { font-size: 1.2rem; font-weight: 700; letter-spacing: 0.03em; margin-bottom: 0.4rem; }
+.book-info .book-sub { font-size: 0.8rem; color: var(--gray-600); }
+
+/* ============================
+   LIFESTYLE — CINEMATIC STRIP
+   ============================ */
+.lifestyle {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    height: 60vh;
+    overflow: hidden;
+}
+
+.lifestyle-cell {
+    position: relative;
+    overflow: hidden;
+}
+
+.lifestyle-cell img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%);
+    transform: scale(1.15);
+    transition: filter 0.8s ease, transform 4s cubic-bezier(0.165,0.84,0.44,1);
+    will-change: transform;
+}
+
+.lifestyle-cell:hover img {
+    filter: grayscale(0%);
+    transform: scale(1);
+}
+
+.lifestyle-cell::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.3);
+    transition: background 0.5s;
+}
+
+.lifestyle-cell:hover::after {
+    background: rgba(0,0,0,0);
+}
+
+/* ============================
+   YOGA TRAINING
+   ============================ */
+.yoga {
+    position: relative;
+    z-index: 2;
+    background: var(--black);
+    padding: 14rem 4rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: start;
+    border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.yoga-title {
+    font-weight: 900;
+    font-size: clamp(3rem, 8vw, 7rem);
+    line-height: 0.85;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+    overflow: hidden;
+}
+
+.yoga-title .y-line {
+    display: block;
+    overflow: hidden;
+}
+
+.yoga-title .y-line-inner {
+    display: block;
+    transform: translateY(100%);
+}
+
+.yoga-text { display: flex; flex-direction: column; gap: 2rem; padding-top: 0.5rem; }
+.yoga-text p { font-size: 1rem; color: var(--gray-400); line-height: 1.8; opacity: 0; transform: translateY(30px); }
+
+.signature {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3rem;
+    color: var(--accent);
+    margin-top: 2rem;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+/* ============================
+   FOOTER
+   ============================ */
+.footer {
+    position: relative;
+    z-index: 2;
+    padding: 8rem 4rem 4rem;
+    background: var(--gray-900);
+    border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 4rem;
+    margin-bottom: 6rem;
+}
+
+.footer-brand h2 { font-size: 3rem; font-weight: 900; letter-spacing: -0.03em; margin-bottom: 1rem; }
+.footer-brand .tagline { font-size: 0.85rem; color: var(--gray-600); }
+
+.footer-col h4 { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.3em; color: var(--gray-600); margin-bottom: 1.5rem; }
+.footer-col a { display: block; color: var(--gray-400); text-decoration: none; font-size: 0.95rem; margin-bottom: 0.75rem; transition: color 0.3s; }
+.footer-col a:hover { color: var(--accent); }
+
+.footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 3rem; border-top: 1px solid rgba(255,255,255,0.05); }
+.footer-bottom span { font-size: 0.65rem; color: var(--gray-600); letter-spacing: 0.05em; }
+
+/* ============================
+   RESPONSIVE
+   ============================ */
+@media (max-width: 1024px) {
+    .hero-mosaic {
+        width: 55vw;
+        height: 80vh;
+    }
+    .hero-text-top { left: 2rem; }
+    .hero-bottom { left: 2rem; }
+    .books-track { gap: 2rem; padding: 0 2rem; }
+    .book-card { flex: 0 0 320px; }
+    .yoga { grid-template-columns: 1fr; padding: 8rem 2rem; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .nav { padding: 1.5rem 2rem; }
+}
+
+@media (max-width: 768px) {
+    .hero-mosaic {
+        width: 80vw;
+        height: 70vh;
+        bottom: 10vh; /* Lift a bit on mobile */
+    }
+    .hero-title { font-size: clamp(3rem, 15vw, 6rem); }
+    .hero-text-top { left: 1.5rem; top: 15%; }
+    .hero-bottom { left: 1.5rem; max-width: 80%; }
+    .nav-titles { display: none; }
+    .lifestyle { grid-template-columns: 1fr; height: auto; }
+    .lifestyle-cell { height: 40vh; }
+    .wisdom { padding: 8rem 2rem; }
+    .books-header { padding: 0 2rem; }
+    .scroll-cue { display: none; }
+}
