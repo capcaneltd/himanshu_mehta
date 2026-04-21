@@ -4,7 +4,7 @@
    ============================================ */
 
 /* --- Google Fonts --- */
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,700;1,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Great+Vibes&display=swap');
 
 /* --- CSS Custom Properties --- */
 :root {
@@ -31,9 +31,9 @@
   --gradient-hero: linear-gradient(160deg, #0b0b12 0%, #1a1420 40%, #1c1510 70%, #0b0b12 100%);
   --gradient-card: linear-gradient(145deg, rgba(212,168,83,0.08), rgba(232,145,58,0.04));
 
-  --font-heading: 'Outfit', sans-serif;
-  --font-body: 'Inter', sans-serif;
-  --font-accent: 'Playfair Display', serif;
+  --font-heading: 'Inter', -apple-system, sans-serif;
+  --font-body: 'Inter', -apple-system, sans-serif;
+  --font-accent: 'Great Vibes', cursive;
 
   --radius-sm: 8px;
   --radius-md: 14px;
@@ -106,17 +106,19 @@ ul, ol { list-style: none; }
   height: 100%;
 }
 .navbar__brand {
-  display: flex; align-items: center; gap: 12px;
+  display: flex; align-items: center; gap: 16px;
   font-family: var(--font-heading); font-weight: 700; font-size: 1.2rem;
   color: var(--clr-white);
 }
-.navbar__brand-icon {
-  width: 40px; height: 40px; border-radius: 50%;
-  background: var(--gradient-gold);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.1rem; color: var(--clr-bg-primary); font-weight: 800;
+.navbar__brand-logo {
+  font-weight: 900; font-size: 1.8rem; letter-spacing: -2px;
+  color: var(--clr-white);
 }
-.navbar__brand span { background: var(--gradient-gold); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.navbar__brand-titles {
+  display: flex; flex-direction: column;
+  font-size: 0.65rem; color: rgba(255,255,255,0.45);
+  line-height: 1.5; letter-spacing: 0.02em;
+}
 
 .navbar__links { display: flex; gap: 6px; align-items: center; }
 .navbar__link {
@@ -408,21 +410,50 @@ ul, ol { list-style: none; }
 }
 
 /* ============================================
-   FOOTER
+   FOOTER — Matches landing page footer
    ============================================ */
-.footer {
+.site-footer {
   border-top: 1px solid var(--clr-glass-border);
-  padding: 40px 0; text-align: center;
+  padding: 5rem 0 2.5rem;
   position: relative; z-index: 1;
+  background: var(--clr-bg-secondary);
 }
-.footer__text {
+.site-footer .container { width: 90%; max-width: var(--container-max); margin: 0 auto; }
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 3rem;
+  margin-bottom: 3rem;
+}
+.footer-brand h2 {
+  font-family: var(--font-heading); font-size: 2.5rem;
+  font-weight: 900; letter-spacing: -0.03em;
+  color: var(--clr-white); margin-bottom: 0.75rem;
+}
+.footer-brand .tagline {
   font-size: 0.85rem; color: var(--clr-text-dim);
 }
-.footer__text a { color: var(--clr-gold); }
-.footer__mission {
-  font-family: var(--font-accent); font-style: italic;
-  font-size: 0.95rem; color: var(--clr-text-muted);
-  margin-bottom: 12px;
+.footer-col h4 {
+  font-size: 0.6rem; text-transform: uppercase;
+  letter-spacing: 0.3em; color: var(--clr-text-dim);
+  margin-bottom: 1.2rem;
+}
+.footer-col a {
+  display: block; color: var(--clr-text-muted);
+  text-decoration: none; font-size: 0.9rem;
+  margin-bottom: 0.6rem; transition: color 0.3s;
+}
+.footer-col a:hover { color: var(--clr-gold); }
+
+.footer-bottom {
+  display: flex; justify-content: space-between;
+  align-items: center; padding-top: 2rem;
+  border-top: 1px solid var(--clr-glass-border);
+}
+.footer-bottom span {
+  font-size: 0.65rem; color: var(--clr-text-dim);
+  letter-spacing: 0.05em;
 }
 
 /* ============================================
@@ -479,6 +510,8 @@ ul, ol { list-style: none; }
   .story-grid { grid-template-columns: 1fr; }
   .book-grid { grid-template-columns: 1fr; }
   .bio-card { padding: 32px 20px; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .navbar__brand-titles { display: none; }
 }
 
 @media (max-width: 480px) {

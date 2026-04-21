@@ -53,6 +53,35 @@ body {
     padding: 0.55rem 1.3rem; border-radius: 100px; cursor: pointer;
 }
 
+.nav-right { display: flex; align-items: center; gap: 2rem; }
+
+.nav-links { display: flex; gap: 0.5rem; }
+
+.nav-link {
+    color: rgba(255,255,255,0.55);
+    text-decoration: none;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.55rem 1.2rem;
+    border-radius: 100px;
+    transition: all 0.3s cubic-bezier(0.165,0.84,0.44,1);
+    border: 1px solid transparent;
+}
+
+.nav-link:hover {
+    color: #fff;
+    background: rgba(255,255,255,0.06);
+    border-color: rgba(255,255,255,0.1);
+}
+
+.nav-link--active {
+    color: var(--accent);
+    background: var(--accent-dim);
+    border-color: rgba(201,169,110,0.2);
+}
+
 /* ============================
    HERO — FULL IMMERSIVE
    ============================ */
@@ -612,6 +641,7 @@ body {
     .hero-text-top { left: 1.5rem; top: 15%; }
     .hero-bottom { left: 1.5rem; max-width: 80%; }
     .nav-titles { display: none; }
+    .nav-links { display: none; }
     .lifestyle { grid-template-columns: 1fr; height: auto; }
     .lifestyle-cell { height: 40vh; }
     .wisdom { padding: 8rem 2rem; }
