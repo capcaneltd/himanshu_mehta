@@ -1,193 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dr. Himanshu Mehta | Author · Yoga Guru · Visionary</title>
-    <meta name="description" content="Dr. Himanshu Mehta — acclaimed author, speaker, and yoga master.">
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://unpkg.com/@studio-freight/lenis@1.0.32/dist/lenis.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dr. Himanshu Mehta – Yoga Acharya, Social Reformer & Author</title>
+  <meta name="description" content="Discover the inspiring stories of Dr. Himanshu Mehta – Yoga Acharya with 44+ years of experience, social reformer, author, and founder of the 3H Movement: Health, Happiness & Harmony.">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
+  <!-- Ambient Background Orbs -->
+  <div class="bg-orb bg-orb--gold"></div>
+  <div class="bg-orb bg-orb--saffron"></div>
+  <div class="bg-orb bg-orb--burgundy"></div>
 
-    <!-- Nav -->
-    <nav class="nav">
-        <div class="nav-left">
-            <span class="logo">HM</span>
-            <div class="nav-titles">
-                <span>author</span>
-                <span>speaker</span>
-                <span>yoga master</span>
-                <span>flow seeker</span>
-            </div>
+  <!-- ======== NAVBAR ======== -->
+  <nav class="navbar">
+    <div class="container navbar__inner">
+      <a href="index.html" class="navbar__brand">
+        <div class="navbar__brand-icon">HM</div>
+        <span>Dr. Himanshu Mehta</span>
+      </a>
+      <input type="checkbox" class="navbar__checkbox" id="navToggle">
+      <label for="navToggle" class="navbar__toggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </label>
+      <div class="navbar__links">
+        <a href="index.html" class="navbar__link navbar__link--active">Stories</a>
+        <a href="about.html" class="navbar__link">About</a>
+        <a href="books.html" class="navbar__link">Books</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ======== PAGE HEADER ======== -->
+  <header class="page-header">
+    <div class="container">
+      <div class="page-header__badge">Yoga Acharya &bull; Social Reformer &bull; Author</div>
+      <h1 class="page-header__title">Stories of Purpose<br>& Transformation</h1>
+      <p class="page-header__subtitle">44+ years of Yoga, service, and innovation — each story a milestone in Dr. Himanshu Mehta's journey toward Health, Happiness & Harmony.</p>
+    </div>
+  </header>
+
+  <!-- ======== STORIES SECTION ======== -->
+  <main class="stories-section">
+    <div class="container">
+      <div class="story-grid">
+
+        <!--
+          ============================================
+          REUSABLE STORY CARD TEMPLATE
+          ============================================
+          To add a new story, copy this entire <div class="story-card"> block,
+          paste it below the last card, and change:
+            1. The emoji in .story-card__icon
+            2. The year in .story-card__year
+            3. The title in .story-card__title
+            4. The description in .story-card__text
+            5. The tag label in .story-card__tag
+          No other file edits are required.
+          ============================================
+        -->
+
+        <!-- Story 1 -->
+        <div class="story-card animate-in">
+          <div class="story-card__icon">📺</div>
+          <div class="story-card__year">February 2023</div>
+          <h2 class="story-card__title">Launch on Aastha TV with Swami Ramdev</h2>
+          <p class="story-card__text">
+            Dr. Mehta's debut book <em>"Making of a Yogi – What Yoga Is All About"</em> was launched live on Aastha TV by Swami Ramdev on February 8th, 2023 — reaching millions of viewers across India and bringing ancient Yogic wisdom into every household.
+          </p>
+          <span class="story-card__tag">Book Launch</span>
         </div>
-        <button class="menu-btn">≡ MENU</button>
-    </nav>
 
-    <main id="app">
+        <!-- Story 2 -->
+        <div class="story-card animate-in">
+          <div class="story-card__icon">🎓</div>
+          <div class="story-card__year">2024</div>
+          <h2 class="story-card__title">Honorary Doctorate from NITI Aayog & MSME</h2>
+          <p class="story-card__text">
+            In recognition of his selfless contributions to the field of Yoga and social upliftment, Dr. Himanshu Mehta was honoured with a prestigious Honorary Doctorate by the Ministry of NITI Aayog and MSME — a rare national accolade celebrating decades of service.
+          </p>
+          <span class="story-card__tag">National Recognition</span>
+        </div>
 
-        <!-- HERO -->
-        <section class="hero">
-            <!-- Rotating mandala rings -->
-            <div class="hero-mandala"></div>
-            
-            <!-- Golden particles (JS will create these) -->
-            <div id="particles"></div>
-            
-            <!-- Image Mosaic: JS will create tiles that assemble into the full photo -->
-            <div class="hero-mosaic" id="heroMosaic" data-src="assets/required/author_photo.jpeg"></div>
-            
-            <!-- Dark overlays so image blends into background -->
-            <div class="hero-overlay hero-overlay-left"></div>
-            <div class="hero-overlay hero-overlay-bottom"></div>
-            <div class="hero-overlay hero-overlay-top"></div>
+        <!-- Story 3 -->
+        <div class="story-card animate-in">
+          <div class="story-card__icon">🧘</div>
+          <div class="story-card__year">Circa 2018</div>
+          <h2 class="story-card__title">World's First Blindfolded Suryanamaskar</h2>
+          <p class="story-card__text">
+            Himanshu devised a globally first-of-its-kind Blindfolded Suryanamaskar — the slowest form of Suryanamaskar integrating Pranayama, Chakra Meditation on Mantras, and the elemental essence of Panchmahabhoota. Suitable for ages 8 to 80, this vinyasa-style practice elevates self-awareness and inner balance.
+          </p>
+          <span class="story-card__tag">Innovation</span>
+        </div>
 
-            <!-- Title overlays the image -->
-            <div class="hero-text-top">
-                <span class="hero-tag">Writer · Yoga Guru · Observer of Flows</span>
-                <h1 class="hero-title">
-                    <span class="line"><span class="line-inner">Dr. Himanshu</span></span>
-                    <span class="line"><span class="line-inner">MEHTA</span></span>
-                </h1>
-            </div>
+        <!-- Story 4 -->
+        <div class="story-card animate-in">
+          <div class="story-card__icon">💛</div>
+          <div class="story-card__year">Ongoing</div>
+          <h2 class="story-card__title">Chair Suryanamaskar — Inspired by My Mother</h2>
+          <p class="story-card__text">
+            Inspired by his late mother, Himanshu conceptualized a first-of-its-kind Chair Suryanamaskar — an innovation to help senior citizens and the elderly experience the full benefits of Suryanamaskar while seated, with dignity and ease. A tribute born from love.
+          </p>
+          <span class="story-card__tag">Social Impact</span>
+        </div>
 
-            <div class="hero-bottom">
-                <p class="hero-bio">
-                    An acclaimed author, an inspiring speaker, and a visionary yoga master. One of the world's leading experts on integrating ancient wellness wisdom into modern high-performance living.
-                </p>
-                <div class="hero-buttons">
-                    <a href="#books" class="btn btn-primary">Buy Latest Book <span class="arrow">→</span></a>
-                    <a href="#yoga" class="btn btn-outline">Train Yoga <span class="arrow">→</span></a>
-                </div>
-            </div>
+        <!-- Story 5 -->
+        <div class="story-card animate-in">
+          <div class="story-card__icon">🌊</div>
+          <div class="story-card__year">11+ Years</div>
+          <h2 class="story-card__title">Juhu Beach Beautification & Yoga Park</h2>
+          <p class="story-card__text">
+            As a social activist, Dr. Mehta has worked extensively on the beautification of Juhu Beach — transforming neglected areas into serene, functional Yoga zones, gardens, and a dedicated Yoga Park. For over 11 years, he has conducted free Saturday sessions as Karseva, making Yoga accessible to all.
+          </p>
+          <span class="story-card__tag">Karseva</span>
+        </div>
 
-            <div class="scroll-cue">
-                <span>Scroll</span>
-                <div class="scroll-line-track">
-                    <div class="scroll-line-thumb"></div>
-                </div>
-            </div>
-        </section>
+        <!-- Story 6 -->
+        <div class="story-card animate-in">
+          <div class="story-card__icon">🌍</div>
+          <div class="story-card__year">2023</div>
+          <h2 class="story-card__title">International Yoga Festival with Swami Chidanand</h2>
+          <p class="story-card__text">
+            Following the Aastha TV launch, the book was further endorsed by Swami Chidanand Saraswati and Sadhvi Bhagwati Saraswati during the prestigious International Yoga Festival — and then by Dr. Mickey Mehta at Crossword, Kemps Corner, Mumbai.
+          </p>
+          <span class="story-card__tag">Global Outreach</span>
+        </div>
 
-        <!-- WISDOM -->
-        <section class="wisdom">
-            <div class="wisdom-bg-image">
-                <img src="assets/required/author_promoting_book.jpeg" alt="Speaking" class="wisdom-img">
-                <div class="wisdom-overlay"></div>
-            </div>
-            <div class="wisdom-inner">
-                <h2 class="wisdom-title">
-                    <span class="w-line"><span class="w-line-inner">ANCIENT</span></span>
-                    <span class="w-line"><span class="w-line-inner">WISDOM</span></span>
-                </h2>
-                <div class="wisdom-body">
-                    <p>
-                        In lectures and trainings combined, Dr. Mehta has helped countless individuals harness flow to increase performance and inner peace. He is the trusted authority by individuals and organizations interested in tapping into their highest potential through the discipline of yoga and mindful mastery.
-                    </p>
-                    <a href="mailto:authorhimnashu007@gmail.com" class="btn btn-primary">Book Himanshu to Speak <span class="arrow">→</span></a>
-                </div>
-            </div>
-        </section>
+      </div><!-- /story-grid -->
+    </div>
+  </main>
 
-        <!-- BOOKS -->
-        <section class="books" id="books">
-            <div class="books-header">
-                <h2>BOOKS</h2>
-                <a href="#" class="view-all">View All <span class="arrow">→</span></a>
-            </div>
-            <div class="books-track">
-                <div class="book-card">
-                    <div class="book-image-wrapper">
-                        <img src="assets/required/making_of_Yogi_book_cover_photo.jpeg" alt="Making of a Yogi">
-                    </div>
-                    <div class="book-info">
-                        <h3>Making of a Yogi</h3>
-                        <p class="book-sub">What Yoga Is All About</p>
-                    </div>
-                </div>
-                <div class="book-card">
-                    <div class="book-image-wrapper">
-                        <img src="assets/required/miracle_twin_book_cover.jpeg" alt="Miracle Twins">
-                    </div>
-                    <div class="book-info">
-                        <h3>Miracle Twins</h3>
-                        <p class="book-sub">Based on a True Story</p>
-                    </div>
-                </div>
-                <div class="book-card">
-                    <div class="book-image-wrapper">
-                        <img src="assets/required/making_of_yogi_with_author_photo_at_left.jpeg" alt="Making of a Yogi - Author">
-                    </div>
-                    <div class="book-info">
-                        <h3>The Author's Journey</h3>
-                        <p class="book-sub">Behind the Pages</p>
-                    </div>
-                </div>
-                <div class="book-card">
-                    <div class="book-image-wrapper">
-                        <img src="assets/required/author_note_author_photo_and_book_cover_photo_in_single_frame.jpeg" alt="Author with Books">
-                    </div>
-                    <div class="book-info">
-                        <h3>The Complete Collection</h3>
-                        <p class="book-sub">Author's Note</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+  <!-- ======== FOOTER ======== -->
+  <footer class="footer">
+    <div class="container">
+      <p class="footer__mission">"Health, Happiness & Harmony — the fourth H is Himanshu."</p>
+      <p class="footer__text">&copy; 2026 Dr. Himanshu Mehta &middot; <a href="mailto:authorhimanshu007@gmail.com">authorhimanshu007@gmail.com</a></p>
+    </div>
+  </footer>
 
-        <!-- LIFESTYLE STRIP -->
-        <section class="lifestyle">
-            <div class="lifestyle-cell"><img src="assets/required/author_photo_in_office.jpeg" alt="In Office"></div>
-            <div class="lifestyle-cell"><img src="assets/required/author_promoting_book_in_mall.jpeg" alt="Book Promotion"></div>
-            <div class="lifestyle-cell"><img src="assets/required/author_casual_photo.jpeg" alt="Casual"></div>
-        </section>
 
-        <!-- YOGA -->
-        <section class="yoga" id="yoga">
-            <div>
-                <h2 class="yoga-title">
-                    <span class="y-line"><span class="y-line-inner">YOGA</span></span>
-                    <span class="y-line"><span class="y-line-inner">TRAINING</span></span>
-                </h2>
-            </div>
-            <div class="yoga-text">
-                <p>Dr. Mehta's practice centers on the neurobiology of peak performance — essentially what happens in the brain and body when humans are performing at their very best — with particular attention paid to the state of consciousness known as flow.</p>
-                <p>Through disciplined yoga practice and deep philosophical inquiry, individuals are trained to transcend ordinary limitations, with clients ranging from elite athletes to corporate executives seeking ultimate clarity.</p>
-                <div class="signature">@~Himanshu Mehta</div>
-            </div>
-        </section>
-
-        <!-- FOOTER -->
-        <footer class="footer">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <h2>Let's Connect.</h2>
-                    <p class="tagline">Ancient wisdom for the modern world.</p>
-                </div>
-                <div class="footer-col">
-                    <h4>Contact</h4>
-                    <a href="mailto:authorhimnashu007@gmail.com">authorhimnashu007@gmail.com</a>
-                    <a href="tel:+919152650234">+91 9152650234</a>
-                </div>
-                <div class="footer-col">
-                    <h4>Social</h4>
-                    <a href="https://instagram.com/dr.himanshumehta.007" target="_blank">Instagram</a>
-                    <a href="https://facebook.com/himanshumehta.007" target="_blank">Facebook</a>
-                    <a href="https://youtube.com/@himanshumehta007" target="_blank">YouTube</a>
-                    <a href="https://twitter.com/ihimanshu_007" target="_blank">X (Twitter)</a>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <span>© 2026 Dr. Himanshu Mehta</span>
-                <span>Designed for seekers of flow.</span>
-            </div>
-        </footer>
-
-    </main>
-
-    <script src="main.js"></script>
 </body>
 </html>
