@@ -1,44 +1,92 @@
 <!--
   ============================================
-  REUSABLE STORY CARD TEMPLATE
+  Dr. Himanshu Mehta – STORY CARD TEMPLATES
   ============================================
-  
-  Usage:
-  Copy the entire <div class="story-card"> block below
-  and paste it inside the <div class="story-grid"> container
-  in index.html. Change the content as needed.
-  
-  No other files need to be edited.
-  
+  Use these templates to add new stories to stories.html.
+  Copy the desired variant and paste it inside <div class="story-grid">.
   ============================================
 -->
 
-<!--
+
+<!-- ============================================
+     VARIANT A: CARD WITH FEATURED IMAGE
+     ============================================
+     Use when you have a photo for the story.
+     - Image goes at the top with a dark gradient overlay
+     - Long text is truncated with a "Read More" expander
+     ============================================ -->
+
 <div class="story-card animate-in">
-  <div class="story-card__icon">🌟</div>
-  <div class="story-card__year">YEAR OR PERIOD</div>
-  <h2 class="story-card__title">Story Title Goes Here</h2>
-  <p class="story-card__text">
-    Story description goes here. Keep it concise — 2-3 sentences
-    that capture the essence of this milestone or achievement.
-  </p>
-  <span class="story-card__tag">Category Tag</span>
+  <!-- Optional featured image -->
+  <div class="story-card__image">
+    <img src="assets/stories/YOUR_IMAGE.jpg" alt="Short description">
+  </div>
+
+  <div class="story-card__body">
+    <div class="story-card__year">YEAR or DATE</div>
+    <h2 class="story-card__title">Your Story Title Here</h2>
+
+    <!-- Preview text (truncated to ~4 lines) -->
+    <p class="story-card__text story-card__text--preview">
+      A brief opening paragraph that gives readers a compelling reason to read more...
+    </p>
+
+    <!-- Expandable full text (CSS-only, no JavaScript needed) -->
+    <details class="story-card__expand">
+      <summary>Read More</summary>
+      <div class="story-card__full-text">
+        <p>The full story text goes here. You can use multiple paragraphs.</p>
+        <br>
+        <p>Add as many paragraphs as needed. The expand/collapse is handled purely by CSS.</p>
+      </div>
+    </details>
+
+    <div class="story-card__tag"><span>Tag Label</span></div>
+  </div>
 </div>
--->
+
+
+<!-- ============================================
+     VARIANT B: CARD WITHOUT IMAGE (ICON ONLY)
+     ============================================
+     Use when no photo is available.
+     - Shows an emoji icon at the top
+     - Shorter text, no expand needed
+     ============================================ -->
+
+<div class="story-card animate-in">
+  <div class="story-card__body">
+    <div class="story-card__icon">🌟</div>
+    <div class="story-card__year">YEAR or DATE</div>
+    <h2 class="story-card__title">Your Story Title Here</h2>
+    <p class="story-card__text">
+      A concise description of the story or milestone. Keep it brief — 2-3 sentences work best for this format.
+    </p>
+    <div class="story-card__tag"><span>Tag Label</span></div>
+  </div>
+</div>
+
 
 <!--
-  FIELDS:
-  ─────────────────────────────────────────────
-  .story-card__icon    → Emoji or icon (e.g. 📺 🎓 🧘 💛 🌊 🌍)
-  .story-card__year    → Year, period, or label (e.g. "2023", "Ongoing")
-  .story-card__title   → Short, descriptive title
-  .story-card__text    → 2-3 sentence description
-  .story-card__tag     → Category badge (e.g. "Innovation", "Karseva")
-  ─────────────────────────────────────────────
-  
-  ADDING A NEW STORY:
-  1. Copy the <div class="story-card animate-in"> block above
-  2. Paste it before the closing </div> of .story-grid in index.html
-  3. Update the 5 content fields
-  4. Save — done! The grid auto-adjusts.
+  ============================================
+  FIELDS TO CHANGE:
+  ============================================
+  For Image Cards:
+    1. Image src & alt     → assets/stories/your_image.jpg
+    2. Year/Date           → .story-card__year
+    3. Title               → .story-card__title
+    4. Preview paragraph   → .story-card__text--preview
+    5. Full body text      → .story-card__full-text
+    6. Tag label           → .story-card__tag > span
+
+  For Icon Cards:
+    1. Emoji               → .story-card__icon
+    2. Year/Date           → .story-card__year
+    3. Title               → .story-card__title
+    4. Description         → .story-card__text
+    5. Tag label           → .story-card__tag > span
+
+  Images go in: assets/stories/
+  No CSS edits required.
+  ============================================
 -->
