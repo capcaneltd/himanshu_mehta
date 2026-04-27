@@ -46,12 +46,23 @@ body {
 .nav-titles { display: flex; flex-direction: column; font-size: 0.75rem; color: rgba(255,255,255,0.6); line-height: 1.6; }
 
 .menu-btn {
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.1);
-    color: #fff; font-family: var(--font);
-    font-size: 0.7rem; font-weight: 500; letter-spacing: 0.05em;
-    padding: 0.55rem 1.3rem; border-radius: 100px; cursor: pointer;
+    display: none; /* Removed old button, kept selector for safety */
 }
+
+/* Mobile hamburger toggle — CSS-only checkbox hack */
+.nav-toggle-checkbox { display: none; }
+.nav-hamburger {
+    display: none; flex-direction: column; gap: 5px; cursor: pointer;
+    background: none; border: none; padding: 8px; z-index: 101;
+}
+.nav-hamburger span {
+    width: 24px; height: 2px; background: #fff;
+    border-radius: 2px; transition: all 0.3s cubic-bezier(0.165,0.84,0.44,1);
+}
+/* Animate hamburger → X */
+.nav-toggle-checkbox:checked ~ .nav-hamburger span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.nav-toggle-checkbox:checked ~ .nav-hamburger span:nth-child(2) { opacity: 0; }
+.nav-toggle-checkbox:checked ~ .nav-hamburger span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 
 .nav-right { display: flex; align-items: center; gap: 2rem; }
 
@@ -114,9 +125,8 @@ body {
     width: 100%;
     height: 100%;
     background-size: 400% 500%; /* 4 cols x 5 rows → maps to full image */
-    filter: grayscale(100%);
     opacity: 0;
-    will-change: transform, opacity, filter;
+    will-change: transform, opacity;
     border: none;
     outline: none;
 }
@@ -366,9 +376,9 @@ body {
 .wisdom-bg-image img {
     width: 100%; height: 100%;
     object-fit: cover;
-    filter: grayscale(100%) brightness(0.3);
+    filter: brightness(0.3);
     transform: scale(1.1);
-    will-change: transform, filter;
+    will-change: transform;
 }
 
 .wisdom-bg-image::after {
@@ -517,14 +527,12 @@ body {
 .lifestyle-cell img {
     width: 100%; height: 100%;
     object-fit: cover;
-    filter: grayscale(100%);
     transform: scale(1.15);
-    transition: filter 0.8s ease, transform 4s cubic-bezier(0.165,0.84,0.44,1);
+    transition: transform 4s cubic-bezier(0.165,0.84,0.44,1);
     will-change: transform;
 }
 
 .lifestyle-cell:hover img {
-    filter: grayscale(0%);
     transform: scale(1);
 }
 
@@ -635,16 +643,43 @@ body {
     .hero-mosaic {
         width: 80vw;
         height: 70vh;
-        bottom: 10vh; /* Lift a bit on mobile */
+        bottom: 10vh;
     }
     .hero-title { font-size: clamp(3rem, 15vw, 6rem); }
     .hero-text-top { left: 1.5rem; top: 15%; }
     .hero-bottom { left: 1.5rem; max-width: 80%; }
     .nav-titles { display: none; }
-    .nav-links { display: none; }
     .lifestyle { grid-template-columns: 1fr; height: auto; }
     .lifestyle-cell { height: 40vh; }
     .wisdom { padding: 8rem 2rem; }
     .books-header { padding: 0 2rem; }
     .scroll-cue { display: none; }
+
+    /* Hamburger visible */
+    .nav-hamburger { display: flex; }
+
+    /* Nav links become slide-down panel */
+    .nav-links {
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        padding: 5rem 2rem 2rem;
+        background: rgba(0,0,0,0.95);
+        backdrop-filter: blur(20px);
+        flex-direction: column;
+        gap: 0.25rem;
+        transform: translateY(-120%);
+        opacity: 0;
+        transition: all 0.4s cubic-bezier(0.165,0.84,0.44,1);
+        pointer-events: none;
+        z-index: 99;
+    }
+    .nav-toggle-checkbox:checked ~ .nav-links {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+    }
+    .nav-link {
+        width: 100%; text-align: center;
+        padding: 0.75rem; font-size: 0.85rem;
+    }
 }

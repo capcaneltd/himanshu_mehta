@@ -55,14 +55,12 @@ function runHeroEntrance() {
         x: () => gsap.utils.random(-300, 300),
         y: () => gsap.utils.random(-300, 300),
         rotation: () => gsap.utils.random(-45, 45),
-        filter: 'grayscale(100%) brightness(2)',
     }, {
         opacity: 0.35,  // Stay dimmed as background
         scale: 1,
         x: 0,
         y: 0,
         rotation: 0,
-        filter: 'grayscale(100%) brightness(1)',
         duration: 1.8,
         stagger: {
             each: 0.06,
@@ -165,7 +163,6 @@ function initScrollAnimations() {
 
     // ——— HERO: Scroll-to-Color on all mosaic tiles ———
     gsap.to('.mosaic-tile', {
-        filter: 'grayscale(0%) brightness(1)',
         opacity: 0.55,
         scrollTrigger: {
             trigger: '.hero',
@@ -213,7 +210,7 @@ function initScrollAnimations() {
 
     // ——— WISDOM: Scroll-to-Color + Parallax ———
     gsap.to('.wisdom-bg-image img', {
-        filter: 'grayscale(0%) brightness(0.5)',
+        filter: 'brightness(0.5)',
         scale: 1,
         scrollTrigger: {
             trigger: '.wisdom',
