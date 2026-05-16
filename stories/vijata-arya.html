@@ -55,42 +55,30 @@
     <div class="container">
       <a href="../stories.html" class="story-detail__back">Back to Stories</a>
 
-      <div class="story-carousel">
-        <div class="story-carousel__track">
-          <!-- Slide 1 -->
-          <div class="story-carousel__slide">
-            <img src="../assets/stories/vijata_arya/WhatsApp Image 2026-05-12 at 07.08.41.jpeg" alt="Meeting with Dr. Vijata Arya">
-          </div>
-          <!-- Slide 2 -->
-          <div class="story-carousel__slide">
-            <img src="../assets/stories/vijata_arya/WhatsApp Image 2026-05-12 at 07.08.42.jpeg" alt="Meeting with Dr. Vijata Arya">
-          </div>
-          <!-- Slide 3 -->
-          <div class="story-carousel__slide">
-            <img src="../assets/stories/vijata_arya/WhatsApp Image 2026-05-12 at 07.07.50.jpeg" alt="Meeting with Dr. Vijata Arya">
-          </div>
-          <!-- Slide 4 -->
-          <div class="story-carousel__slide">
-            <img src="../assets/stories/vijata_arya/WhatsApp Image 2026-05-12 at 07.08.19.jpeg" alt="Meeting with Dr. Vijata Arya">
-          </div>
-          <!-- Slide 5 -->
-          <div class="story-carousel__slide">
-            <img src="../assets/stories/vijata_arya/WhatsApp Image 2026-05-12 at 07.08.20.jpeg" alt="Meeting with Dr. Vijata Arya">
-          </div>
+      <div class="story-gallery">
+        <!-- Span 2 columns to make it look like a featured masonry block -->
+        <div class="story-gallery__item span-2-col">
+          <img src="../assets/stories/vijata_arya/WhatsApp Image 2026-05-12 at 07.08.41.jpeg" alt="Meeting with Dr. Vijata Arya">
         </div>
+        <div class="story-gallery__item">
+          <img src="../assets/stories/vijata_arya/WhatsApp Image 2026-05-12 at 07.08.42.jpeg" alt="Meeting with Dr. Vijata Arya">
+        </div>
+        <div class="story-gallery__item">
+          <img src="../assets/stories/vijata_arya/WhatsApp Image 2026-05-12 at 07.07.50.jpeg" alt="Meeting with Dr. Vijata Arya">
+        </div>
+        <!-- Span 2 columns for variation -->
+        <div class="story-gallery__item span-2-col">
+          <img src="../assets/stories/vijata_arya/WhatsApp Image 2026-05-12 at 07.08.19.jpeg" alt="Meeting with Dr. Vijata Arya">
+        </div>
+        <div class="story-gallery__item span-2-col">
+          <img src="../assets/stories/vijata_arya/WhatsApp Image 2026-05-12 at 07.08.20.jpeg" alt="Meeting with Dr. Vijata Arya">
+        </div>
+      </div>
 
-        <!-- Controls -->
-        <div class="story-carousel__prev">‹</div>
-        <div class="story-carousel__next">›</div>
-        
-        <!-- Dots -->
-        <div class="story-carousel__dots">
-          <div class="story-carousel__dot story-carousel__dot--active"></div>
-          <div class="story-carousel__dot"></div>
-          <div class="story-carousel__dot"></div>
-          <div class="story-carousel__dot"></div>
-          <div class="story-carousel__dot"></div>
-        </div>
+      <!-- Lightbox -->
+      <div id="lightbox" class="lightbox">
+        <span class="lightbox__close">&times;</span>
+        <img class="lightbox__img" src="" alt="Full Screen Image">
       </div>
 
       <div class="story-detail__meta">
@@ -163,40 +151,43 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // Simple Carousel Logic
-      const track = document.querySelector('.story-carousel__track');
-      const slides = document.querySelectorAll('.story-carousel__slide');
-      const prevBtn = document.querySelector('.story-carousel__prev');
-      const nextBtn = document.querySelector('.story-carousel__next');
-      const dots = document.querySelectorAll('.story-carousel__dot');
-      
-      if(!track || slides.length <= 1) return;
-      
-      let currentIndex = 0;
-      
-      function updateCarousel() {
-        track.style.transform = `translateX(-${currentIndex * 100}%)`;
-        dots.forEach((dot, idx) => {
-          dot.classList.toggle('story-carousel__dot--active', idx === currentIndex);
-        });
-      }
-      
-      prevBtn.addEventListener('click', () => {
-        currentIndex = (currentIndex > 0) ? currentIndex - 1 : slides.length - 1;
-        updateCarousel();
-      });
-      
-      nextBtn.addEventListener('click', () => {
-        currentIndex = (currentIndex < slides.length - 1) ? currentIndex + 1 : 0;
-        updateCarousel();
-      });
-      
-      dots.forEach((dot, idx) => {
-        dot.addEventListener('click', () => {
-          currentIndex = idx;
-          updateCarousel();
+      const galleryItems = document.querySelectorAll('.story-gallery__item');
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = lightbox.querySelector('.lightbox__img');
+      const lightboxClose = lightbox.querySelector('.lightbox__close');
+
+      // Lightbox logic
+      galleryItems.forEach(item => {
+        item.addEventListener('click', () => {
+          const imgSrc = item.querySelector('img').src;
+          lightboxImg.src = imgSrc;
+          lightbox.classList.add('active');
         });
       });
+
+      lightboxClose.addEventListener('click', () => {
+        lightbox.classList.remove('active');
+      });
+
+      lightbox.addEventListener('click', (e) => {
+        if (e.target !== lightboxImg) {
+          lightbox.classList.remove('active');
+        }
+      });
+
+      // Intersection Observer for animation (animates items as they scroll into view)
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => {
+              entry.target.classList.add('visible');
+            }, index * 100); // Stagger effect
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      galleryItems.forEach(item => observer.observe(item));
     });
   </script>
 </body>
