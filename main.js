@@ -13,13 +13,12 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ============================
-   CREATE MOSAIC TILES (4 cols x 5 rows = 20 tiles)
+   CREATE MOSAIC TILES
    ============================ */
 function createMosaic() {
     const container = document.getElementById('heroMosaic');
     if (!container) return;
 
-    const src = container.dataset.src;
     const cols = 4;
     const rows = 5;
 
@@ -27,7 +26,6 @@ function createMosaic() {
         for (let col = 0; col < cols; col++) {
             const tile = document.createElement('div');
             tile.className = 'mosaic-tile';
-            tile.style.backgroundImage = `url(${src})`;
             tile.style.backgroundPosition = `${(col / (cols - 1)) * 100}% ${(row / (rows - 1)) * 100}%`;
             container.appendChild(tile);
         }
@@ -41,6 +39,18 @@ function runHeroEntrance() {
     const tiles = document.querySelectorAll('.mosaic-tile');
     const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
+    const images = [
+        'assets/required/author_photo.jpeg',
+        'assets/required/miracle_twin_book_cover.jpeg',
+        'assets/required/making_of_Yogi_book_cover_photo.jpeg'
+    ];
+    let currentIndex = 0;
+
+    // Set initial image
+    tiles.forEach(tile => {
+        tile.style.backgroundImage = `url(${images[currentIndex]})`;
+    });
+
     // Mandala fades in first
     tl.to('.hero-mandala', {
         opacity: 0.4,
@@ -48,25 +58,30 @@ function runHeroEntrance() {
         ease: 'power1.out'
     })
 
-    // Tiles fly in from random positions and assemble
+    // Tiles fly in from random positions and assemble (The initial entrance)
     .fromTo(tiles, {
         opacity: 0,
         scale: 0.3,
-        x: () => gsap.utils.random(-300, 300),
-        y: () => gsap.utils.random(-300, 300),
-        rotation: () => gsap.utils.random(-45, 45),
+        x: () => gsap.utils.random(-400, 400),
+        y: () => gsap.utils.random(-400, 400),
+        rotation: () => gsap.utils.random(-90, 90),
+        rotationY: () => gsap.utils.random(-180, 180) // 3D broken tile flip!
     }, {
-        opacity: 0.35,  // Stay dimmed as background
+        opacity: 0.4,  // Stay dimmed as background
         scale: 1,
         x: 0,
         y: 0,
         rotation: 0,
+        rotationY: 0,
         duration: 1.8,
         stagger: {
-            each: 0.06,
-            from: 'random',  // Random order for organic feel
+            each: 0.05,
+            from: 'random',
         },
         ease: 'expo.out',
+        onComplete: () => {
+            gsap.delayedCall(3, startMosaicLoop);
+        }
     }, '-=1')
 
     // Tag line
@@ -104,6 +119,54 @@ function runHeroEntrance() {
         stagger: { each: 0.02, from: 'random' },
         duration: 1,
     }, '-=1');
+
+    // The looping function for the mosaic
+    function startMosaicLoop() {
+        if (!tiles.length) return;
+        
+        // Scatter!
+        gsap.to(tiles, {
+            opacity: 0,
+            scale: 0.3,
+            x: () => gsap.utils.random(-400, 400),
+            y: () => gsap.utils.random(-400, 400),
+            rotation: () => gsap.utils.random(-90, 90),
+            rotationY: () => gsap.utils.random(-180, 180),
+            duration: 1.2,
+            stagger: {
+                each: 0.02,
+                from: 'random'
+            },
+            ease: 'power2.in',
+            onComplete: () => {
+                // Change to next image
+                currentIndex = (currentIndex + 1) % images.length;
+                tiles.forEach(tile => {
+                    tile.style.backgroundImage = `url(${images[currentIndex]})`;
+                });
+
+                // Assemble!
+                gsap.to(tiles, {
+                    opacity: 0.4,
+                    scale: 1,
+                    x: 0,
+                    y: 0,
+                    rotation: 0,
+                    rotationY: 0,
+                    duration: 1.6,
+                    stagger: {
+                        each: 0.03,
+                        from: 'random'
+                    },
+                    ease: 'expo.out',
+                    onComplete: () => {
+                        // Wait and repeat
+                        gsap.delayedCall(3, startMosaicLoop);
+                    }
+                });
+            }
+        });
+    }
 }
 
 /* ============================
