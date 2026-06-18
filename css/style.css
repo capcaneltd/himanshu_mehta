@@ -852,3 +852,841 @@ a.story-card-wrapper {
   .book-card__body { padding: 24px 20px; }
   .book-card__cover { height: 220px; }
 }
+
+/* ============================================
+   BENTO GRID & QR CONNECT PAGE
+   ============================================ */
+.qr-section {
+  padding: calc(var(--nav-height) + 40px) 0 80px;
+  position: relative;
+  z-index: 1;
+}
+
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+/* Base Bento Card */
+.bento-card {
+  background: var(--clr-bg-card);
+  border: 1px solid var(--clr-glass-border);
+  border-radius: var(--radius-xl);
+  padding: 28px;
+  transition: all var(--transition-spring);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-card);
+}
+
+.bento-card:hover {
+  background: var(--clr-bg-card-hover);
+  border-color: rgba(212, 168, 83, 0.25);
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* 1. Profile Widget */
+.bento-card--profile {
+  grid-row: span 2;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
+
+.profile-avatar-container {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  margin-bottom: 24px;
+}
+
+.profile-avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--clr-gold);
+  box-shadow: var(--shadow-glow);
+  position: relative;
+  z-index: 1;
+}
+
+.avatar-glow {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  background: var(--gradient-gold);
+  filter: blur(12px);
+  opacity: 0.35;
+  z-index: 0;
+  transition: opacity var(--transition-base);
+}
+
+.bento-card--profile:hover .avatar-glow {
+  opacity: 0.6;
+}
+
+.profile-name {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1.8rem;
+  color: var(--clr-white);
+  margin-bottom: 12px;
+  letter-spacing: -0.02em;
+}
+
+.profile-badges {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.profile-badge {
+  padding: 4px 14px;
+  background: rgba(212, 168, 83, 0.08);
+  border: 1px solid rgba(212, 168, 83, 0.25);
+  border-radius: 50px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--clr-gold-light);
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+}
+
+.profile-quote {
+  font-size: 0.95rem;
+  color: var(--clr-text-muted);
+  line-height: 1.6;
+  max-width: 320px;
+  font-style: italic;
+}
+
+/* Profile bottom full card styling */
+.profile-bottom-card-wrapper {
+  margin-top: 40px;
+  margin-bottom: 45px;
+}
+
+.profile-bottom-title {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--clr-white);
+  margin-bottom: 22px;
+  text-align: center;
+  letter-spacing: -0.01em;
+  position: relative;
+}
+
+.profile-bottom-title::after {
+  content: '';
+  display: block;
+  width: 50px;
+  height: 2px;
+  background: var(--gradient-gold);
+  margin: 8px auto 0;
+  border-radius: 2px;
+}
+
+.bento-card--profile-full {
+  flex-direction: row;
+  align-items: center;
+  gap: 40px;
+  background: var(--clr-bg-card);
+  border: 1px solid var(--clr-glass-border);
+  border-radius: var(--radius-xl);
+  padding: 32px 40px;
+  box-shadow: var(--shadow-card);
+  transition: all var(--transition-spring);
+}
+
+.bento-card--profile-full:hover {
+  background: var(--clr-bg-card-hover);
+  border-color: rgba(212, 168, 83, 0.25);
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-hover);
+}
+
+.bento-card--profile-full:hover .avatar-glow {
+  opacity: 0.6;
+}
+
+.profile-text-content {
+  flex: 1;
+  text-align: left;
+}
+
+.profile-text-content .profile-badges {
+  justify-content: flex-start;
+}
+
+.profile-text-content .profile-quote {
+  max-width: none;
+}
+
+/* Save Contact inline button styling */
+.contact-vcard-btn-inline {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 18px;
+  padding: 14px;
+  background: var(--gradient-card);
+  border: 1px solid rgba(212, 168, 83, 0.3);
+  border-radius: var(--radius-sm);
+  color: var(--clr-gold);
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all var(--transition-base);
+}
+
+.contact-vcard-btn-inline:hover {
+  background: rgba(212, 168, 83, 0.12);
+  border-color: var(--clr-gold);
+  color: var(--clr-gold-light);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-glow);
+}
+
+.contact-vcard-btn-inline svg {
+  transition: transform var(--transition-spring);
+}
+
+.contact-vcard-btn-inline:hover svg {
+  transform: translateY(2px);
+}
+
+/* 2. Save Contact Widget */
+.bento-card--vcard {
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+  background: var(--gradient-card);
+  border-color: rgba(212, 168, 83, 0.2);
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+}
+
+.bento-card--vcard:hover {
+  border-color: var(--clr-gold);
+  box-shadow: var(--shadow-glow);
+}
+
+.vcard-icon {
+  width: 54px;
+  height: 54px;
+  border-radius: var(--radius-md);
+  background: var(--gradient-gold);
+  color: var(--clr-bg-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--transition-spring);
+}
+
+.bento-card--vcard:hover .vcard-icon {
+  transform: scale(1.1) rotate(-5deg);
+}
+
+.vcard-icon svg {
+  width: 26px;
+  height: 26px;
+}
+
+.vcard-info {
+  flex: 1;
+}
+
+.vcard-info h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--clr-white);
+  margin-bottom: 4px;
+}
+
+.vcard-info p {
+  font-size: 0.85rem;
+  color: var(--clr-text-muted);
+  line-height: 1.4;
+}
+
+.vcard-action-arrow {
+  color: var(--clr-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--transition-spring);
+}
+
+.bento-card--vcard:hover .vcard-action-arrow {
+  transform: translateY(4px);
+}
+
+/* 3. Quick Connect Widget */
+.bento-card--contact h3 {
+  font-size: 1.2rem;
+  color: var(--clr-white);
+  margin-bottom: 16px;
+}
+
+.contact-buttons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.contact-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px;
+  border-radius: var(--radius-sm);
+  font-size: 0.88rem;
+  font-weight: 600;
+  border: 1px solid var(--clr-glass-border);
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--clr-text-muted);
+  transition: all var(--transition-base);
+  text-decoration: none;
+}
+
+.contact-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.contact-btn:hover {
+  color: var(--clr-white);
+  transform: translateY(-2px);
+}
+
+.contact-btn--call:hover {
+  border-color: var(--clr-gold);
+  background: rgba(212, 168, 83, 0.1);
+}
+
+.contact-btn--whatsapp:hover {
+  border-color: #25d366;
+  background: rgba(37, 211, 102, 0.1);
+}
+
+.contact-btn--email:hover {
+  border-color: var(--clr-saffron);
+  background: rgba(232, 145, 58, 0.1);
+}
+
+.contact-btn--office:hover {
+  border-color: var(--clr-gold-dark);
+  background: rgba(161, 124, 59, 0.1);
+}
+
+.bento-card--contact-full {
+  grid-column: span 2;
+}
+
+.contact-buttons-full {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+/* 4. Featured Book Widget */
+.bento-card--book h3 {
+  font-size: 1.2rem;
+  color: var(--clr-white);
+  margin-bottom: 20px;
+}
+
+.book-purchase-widget {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+.book-widget-cover {
+  width: 90px;
+  height: 130px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+  border: 1px solid var(--clr-glass-border);
+  transition: transform var(--transition-spring);
+}
+
+.bento-card--book:hover .book-widget-cover {
+  transform: scale(1.05) rotate(3deg);
+}
+
+.book-purchase-details {
+  flex: 1;
+}
+
+.book-desc {
+  font-size: 0.88rem;
+  color: var(--clr-text-muted);
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+
+.book-purchase-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.btn-amazon-primary,
+.btn-amazon-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
+  font-weight: 700;
+  transition: all var(--transition-base);
+  text-decoration: none;
+}
+
+.btn-amazon-primary {
+  background: var(--gradient-gold);
+  color: var(--clr-bg-primary);
+  border: none;
+  box-shadow: 0 4px 12px rgba(212, 168, 83, 0.25);
+}
+
+.btn-amazon-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-glow);
+  color: var(--clr-bg-primary);
+}
+
+.btn-amazon-secondary {
+  background: transparent;
+  color: var(--clr-white);
+  border: 1px solid var(--clr-glass-border);
+}
+
+.btn-amazon-secondary:hover {
+  background: var(--clr-glass);
+  border-color: var(--clr-gold);
+  transform: translateY(-2px);
+}
+
+.amazon-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.amazon-icon-img {
+  height: 14px;
+  width: auto;
+  object-fit: contain;
+  vertical-align: middle;
+}
+
+.btn--outline .amazon-icon-img {
+  filter: brightness(0) invert(1);
+  opacity: 0.8;
+  transition: opacity var(--transition-base);
+}
+
+.btn--outline:hover .amazon-icon-img {
+  opacity: 1;
+}
+
+.down-arrow {
+  transition: transform var(--transition-base);
+}
+
+.btn-amazon-secondary:hover .down-arrow {
+  transform: translateY(2px);
+}
+
+/* 5. Featured Video Widget */
+.bento-card--video {
+  height: 180px;
+  justify-content: flex-end;
+  text-decoration: none;
+  color: inherit;
+  border-color: rgba(212, 168, 83, 0.15);
+}
+
+.video-overlay-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.4) grayscale(20%);
+  transition: all 0.6s cubic-bezier(0.165,0.84,0.44,1);
+  z-index: 0;
+}
+
+.bento-card--video:hover .video-overlay-bg {
+  filter: brightness(0.6) grayscale(0%);
+  transform: scale(1.05);
+}
+
+.video-card-glow {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(11,11,18,0.9) 0%, transparent 80%);
+  z-index: 1;
+}
+
+.video-card-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.video-play-btn {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--clr-white);
+  color: var(--clr-bg-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+  transition: all var(--transition-spring);
+}
+
+.bento-card--video:hover .video-play-btn {
+  transform: scale(1.1);
+  background: var(--clr-gold);
+}
+
+.video-play-btn svg {
+  width: 20px;
+  height: 20px;
+  margin-left: 3px;
+}
+
+.video-text-details h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--clr-white);
+  margin-bottom: 2px;
+}
+
+.video-text-details p {
+  font-size: 0.8rem;
+  color: var(--clr-text-muted);
+}
+
+/* 6. Social Profiles Grid */
+.bento-card--socials h3 {
+  font-size: 1.2rem;
+  color: var(--clr-white);
+  margin-bottom: 16px;
+}
+
+.social-bento-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.social-bento-card {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--clr-glass-border);
+  transition: all var(--transition-base);
+  text-decoration: none;
+  color: inherit;
+}
+
+.social-bento-card svg {
+  margin-bottom: 8px;
+  color: var(--clr-text-muted);
+  transition: transform var(--transition-spring), color var(--transition-base);
+}
+
+.social-bento-card:hover svg {
+  transform: scale(1.15);
+}
+
+.social-label {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--clr-white);
+  margin-bottom: 2px;
+}
+
+.social-handle {
+  font-size: 0.72rem;
+  color: var(--clr-text-dim);
+}
+
+.social-bento-card--instagram:hover {
+  border-color: #e1306c;
+  background: linear-gradient(135deg, rgba(225, 48, 108, 0.08) 0%, rgba(253, 29, 29, 0.08) 50%, rgba(252, 176, 69, 0.08) 100%);
+  color: #e1306c;
+}
+.social-bento-card--instagram:hover svg { color: #e1306c; }
+
+.social-bento-card--facebook:hover {
+  border-color: #1877f2;
+  background: rgba(24, 119, 242, 0.08);
+  color: #1877f2;
+}
+.social-bento-card--facebook:hover svg { color: #1877f2; }
+
+.social-bento-card--youtube:hover {
+  border-color: #ff0000;
+  background: rgba(255, 0, 0, 0.08);
+  color: #ff0000;
+}
+.social-bento-card--youtube:hover svg { color: #ff0000; }
+
+.social-bento-card--x:hover {
+  border-color: var(--clr-white);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--clr-white);
+}
+.social-bento-card--x:hover svg { color: var(--clr-white); }
+
+/* 7. Return Button */
+.qr-back-wrapper {
+  margin-top: 24px;
+}
+
+.bento-card--back {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px 28px;
+  text-decoration: none;
+  color: var(--clr-gold);
+  font-weight: 700;
+  border-color: rgba(212, 168, 83, 0.2);
+  cursor: pointer;
+  background: var(--clr-bg-card);
+}
+
+.bento-card--back:hover {
+  border-color: var(--clr-gold);
+  color: var(--clr-gold-light);
+}
+
+.back-arrow {
+  transition: transform var(--transition-base);
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.bento-card--back:hover .back-arrow {
+  transform: translateX(6px);
+}
+
+/* ============================================
+   AMAZON GLOBAL STORES GRID
+   ============================================ */
+.amazon-global-section {
+  background: rgba(18,18,28,0.4);
+  border: 1px solid var(--clr-glass-border);
+  border-radius: var(--radius-xl);
+  padding: 40px;
+  margin-top: 40px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-card);
+}
+
+.amazon-global-header {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.amazon-logo-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.amazon-logo-main {
+  color: var(--clr-gold);
+}
+
+.amazon-logo-img-main {
+  height: 35px;
+  width: auto;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  opacity: 0.9;
+}
+
+.amazon-global-header h2 {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--clr-white);
+  letter-spacing: -0.02em;
+}
+
+.amazon-global-header p {
+  font-size: 0.95rem;
+  color: var(--clr-text-muted);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.global-stores-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.global-store-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 20px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--clr-glass-border);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-base);
+  text-decoration: none;
+  color: inherit;
+}
+
+.global-store-card:hover {
+  background: rgba(212, 168, 83, 0.06);
+  border-color: rgba(212, 168, 83, 0.3);
+  transform: translateY(-2px);
+}
+
+.flag-icon {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.country-name {
+  flex: 1;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--clr-text);
+  transition: color var(--transition-base);
+}
+
+.global-store-card:hover .country-name {
+  color: var(--clr-gold-light);
+}
+
+.store-arrow {
+  color: var(--clr-text-dim);
+  font-size: 0.9rem;
+  transition: transform var(--transition-base), color var(--transition-base);
+}
+
+.global-store-card:hover .store-arrow {
+  color: var(--clr-gold);
+  transform: translateX(3px);
+}
+
+/* ============================================
+   RESPONSIVE LAYOUT OVERRIDES FOR BENTO & GLOBAL
+   ============================================ */
+@media (max-width: 768px) {
+  .qr-section {
+    padding: calc(var(--nav-height) + 20px) 0 60px;
+  }
+  
+  .bento-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .bento-card--profile-full {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+    padding: 28px 20px;
+  }
+  
+  .profile-text-content {
+    text-align: center;
+  }
+  
+  .profile-text-content .profile-badges {
+    justify-content: center;
+  }
+
+  .bento-card--contact-full {
+    grid-column: span 1 !important;
+  }
+  
+  .contact-buttons-full {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  
+  .bento-card {
+    padding: 20px;
+  }
+  
+  .profile-avatar-container {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 16px;
+  }
+  
+  .profile-name {
+    font-size: 1.5rem;
+  }
+  
+  .book-purchase-widget {
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+  }
+  
+  .book-purchase-actions {
+    justify-content: center;
+  }
+  
+  .bento-card--video {
+    height: 150px;
+  }
+  
+  .video-play-btn {
+    width: 44px;
+    height: 44px;
+  }
+  
+  .video-play-btn svg {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .amazon-global-section {
+    padding: 24px 16px;
+    margin-top: 24px;
+  }
+  
+  .global-stores-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  
+  .global-store-card {
+    padding: 14px 16px;
+  }
+}
