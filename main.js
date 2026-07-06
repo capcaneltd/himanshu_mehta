@@ -40,7 +40,7 @@ function runHeroEntrance() {
     const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
     const images = [
-        'assets/required/author_photo.jpeg',
+        'assets/required/author_photo.png',
         'assets/required/miracle_twin_book_cover.jpeg',
         'assets/required/making_of_Yogi_book_cover_photo.jpeg'
     ];

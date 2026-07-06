@@ -638,6 +638,55 @@ a.story-card-wrapper {
 }
 
 /* ============================================
+   YOGA TRAINING (yoga-training.html)
+   ============================================ */
+.yoga-training-section { padding: 40px 0 80px; position: relative; z-index: 1; }
+
+.yoga-media-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+.yoga-media-card {
+  background: var(--clr-bg-card);
+  border: 1px solid var(--clr-glass-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: all var(--transition-base);
+  display: flex;
+  flex-direction: column;
+}
+
+.yoga-media-card:hover {
+  border-color: rgba(212,168,83,0.3);
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-4px);
+}
+
+.yoga-media-card.video-container {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+  height: 0;
+}
+
+.yoga-media-card.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.yoga-media-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* ============================================
    BOOK CARDS (books.html)
    ============================================ */
 .books-section { padding: 60px 0 80px; position: relative; z-index: 1; }
