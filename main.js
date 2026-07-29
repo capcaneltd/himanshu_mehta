@@ -54,9 +54,9 @@ function runHeroEntrance() {
     // Mandala fades in first
     tl.to('.hero-mandala', {
         opacity: 0.4,
-        duration: 1.5,
+        duration: 1.0,
         ease: 'power1.out'
-    })
+    }, 0)
 
     // Tiles fly in from random positions and assemble (The initial entrance)
     .fromTo(tiles, {
@@ -73,52 +73,52 @@ function runHeroEntrance() {
         y: 0,
         rotation: 0,
         rotationY: 0,
-        duration: 1.8,
+        duration: 1.2,
         stagger: {
-            each: 0.05,
+            each: 0.02,
             from: 'random',
         },
         ease: 'expo.out',
         onComplete: () => {
             gsap.delayedCall(3, startMosaicLoop);
         }
-    }, '-=1')
+    }, 0.1)
 
     // Tag line
     .to('.hero-tag', {
         opacity: 1,
-        duration: 1
-    }, '-=0.6')
+        duration: 0.8
+    }, 0.2)
     // Title lines slide up from masks
     .to('.hero-title .line-inner', {
         y: '0%',
-        duration: 1.4,
-        stagger: 0.15,
+        duration: 1.0,
+        stagger: 0.1,
         ease: 'expo.out'
-    }, '-=0.8')
+    }, 0.3)
     // Bio text
     .to('.hero-bio', {
         opacity: 1,
         y: 0,
-        duration: 1.2,
-    }, '-=0.5')
+        duration: 0.8,
+    }, 0.5)
     // Buttons
     .to('.hero-buttons', {
         opacity: 1,
         y: 0,
-        duration: 1,
-    }, '-=0.7')
+        duration: 0.8,
+    }, 0.6)
     // Scroll cue
     .to('.scroll-cue', {
         opacity: 1,
-        duration: 1,
-    }, '-=0.4')
+        duration: 0.8,
+    }, 0.8)
     // Particles fade in
     .to('.particle', {
         opacity: 0.6,
         stagger: { each: 0.02, from: 'random' },
         duration: 1,
-    }, '-=1');
+    }, 0.5);
 
     // The looping function for the mosaic
     function startMosaicLoop() {
